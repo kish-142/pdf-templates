@@ -1,0 +1,35 @@
+{
+  "name": "pdf-templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "del": "^7.0.0",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.3",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "pug-cli": "^1.0.0-alpha6",
+    "puppeteer": "^13.5.2",
+    "tailwindcss": "^3.2.7"
+  },
+  "scripts": {
+    "dev": "npm-run-all --parallel css-watch gulp-watch",
+    "css-watch": "npx tailwindcss -i ./src/main.css -o ./dist/main.css --watch",
+    "css-compile": "npx tailwindcss -i ./src/main.css -o ./dist/main.css",
+    "build": "npx tailwindcss -i ./src/main.css -o ./dist/main.css && pug ./index.pug -o ./dist/index.html",
+    "gulp-compile": "gulp compile",
+    "gulp-watch": "gulp watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "gulp-inline-source": "^4.0.0"
+  }
+}
