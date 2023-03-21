@@ -23,7 +23,7 @@ npm run dev
 
 This will compile the file and watch for any changes made .
 
-In the `src` directory, you will find the general CSS styles that should be linked to every HTML file created.
+In the `src` directory, you will find the general CSS file `(main.css)` that should be linked to every HTML file created.
 
 To merge the HTML and CSS files into a single file and generate a PDF, run the following command:
 
@@ -37,4 +37,4 @@ This command will generate a PDF file in the `pdf` directory and move the merged
 
 The project includes a `template.html` file that provides the header and footer design for the PDF file. To start with a new PDF template, you can copy and paste the code from the `template.html` file.
 
-After copying the code, you need to update the title tag and link to the general CSS file.
+After copying the code, make sure to update the title tag and link to the general CSS file `(main.css)`.

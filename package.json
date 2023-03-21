@@ -20,9 +20,9 @@
   },
   "scripts": {
     "dev": "npm-run-all --parallel css-watch gulp-watch",
-    "css-watch": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
-    "css-compile": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css",
-    "build": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css && pug ./index.pug -o ./dist/index.html",
+    "css-watch": "npx tailwindcss -i ./src/main.css -o ./dist/main.css --watch",
+    "css-compile": "npx tailwindcss -i ./src/main.css -o ./dist/main.css",
+    "build": "npx tailwindcss -i ./src/main.css -o ./dist/main.css && pug ./index.pug -o ./dist/index.html",
     "gulp-compile": "gulp compile",
     "gulp-watch": "gulp watch"
   },

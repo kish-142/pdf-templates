@@ -3,36 +3,30 @@ const path = require("path");
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
 
-// TO DELTE THE DIRECTORY OUTPUT AND PDF BEFORE COMPILING
-if (fs.existsSync(path.join(__dirname, "output"))) {
-  fs.rmSync(path.join(__dirname, "output"), { recursive: true });
+// TO DELETE THE DIRECTORY OUTPUT AND PDF BEFORE COMPILING
+const outputPath = path.join(__dirname, "output");
+const pdfPath = updateFilePath(
+  path.join(
+    __dirname,
+    "pdf",
+    path.relative(__dirname, path.join(__dirname, "dist"))
+  )
+);
+
+if (fs.existsSync(outputPath)) {
+  fs.rmSync(outputPath, { recursive: true });
 }
 
-if (
-  fs.existsSync(
-    path.join(
-      __dirname,
-      "pdf",
-      path.relative(__dirname, path.join(__dirname, "dist"))
-    )
-  )
-) {
-  fs.rmSync(
-    path.join(
-      __dirname,
-      "pdf",
-      path.relative(__dirname, path.join(__dirname, "dist"))
-    ),
-    {
-      recursive: true,
-    }
-  );
+if (fs.existsSync(pdfPath)) {
+  fs.rmSync(pdfPath, {
+    recursive: true,
+  });
 }
 
 // PATH FOR DIST FOLDER
 const distDir = path.join(__dirname, "dist");
 
-// TO READ TO FILE CONTENT
+// TO READ THE FILE CONTENT
 function getFileContent(file, filePath) {
   const absolutePath = path.resolve(path.dirname(filePath), file);
 
@@ -44,9 +38,18 @@ function getFileContent(file, filePath) {
   return fs.readFileSync(absolutePath, "utf8");
 }
 
+// Remove dist from the file path
+function updateFilePath(path) {
+  const pathArr = path.split("/");
+
+  pathArr.splice(pathArr.indexOf("dist"), 1);
+
+  return pathArr.join("/");
+}
+
 // PDF CONVERSION
 async function convertHtmlToPuppeter(outputFilePath, pdfDir, file) {
-  const outputPdfFilePath = path.join(
+  const pdfFilePath = path.join(
     pdfDir,
     path.basename(file, path.extname(file)) + ".pdf"
   );
@@ -57,7 +60,7 @@ async function convertHtmlToPuppeter(outputFilePath, pdfDir, file) {
     waitUntil: "networkidle0",
   });
   await page.pdf({
-    path: outputPdfFilePath,
+    path: pdfFilePath,
     format: "a4",
     scale: 1.3,
     printBackground: true,
@@ -72,12 +75,14 @@ async function convertHtmlToPuppeter(outputFilePath, pdfDir, file) {
 
   await browser.close();
 
-  console.log(`PDF saved: ${outputPdfFilePath}`);
+  console.log(`PDF saved: ${pdfFilePath}`);
 }
 
 async function addExternalCssToInternalHtml(rootDir) {
   const outputDir = path.join(__dirname, "output");
-  const pdfDir = path.join(__dirname, "pdf", path.relative(__dirname, rootDir));
+  const pdfDir = updateFilePath(
+    path.join(__dirname, "pdf", path.relative(__dirname, rootDir))
+  );
 
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir);
@@ -133,10 +138,12 @@ async function addExternalCssToInternalHtml(rootDir) {
             `${styleTag}\n</head>`
           );
 
-          const outputFilePath = path.join(
+          let outputFilePath = path.join(
             outputDir,
             path.relative(__dirname, filePath)
           );
+
+          outputFilePath = updateFilePath(outputFilePath);
 
           if (!fs.existsSync(path.dirname(outputFilePath))) {
             fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });

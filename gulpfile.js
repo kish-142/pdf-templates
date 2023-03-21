@@ -37,13 +37,13 @@ gulp.task("compile-pug", () => {
 });
 
 gulp.task("css", () => {
-  return gulp.src([cssFiles, "!.src/styles.css"]).pipe(dest(distFolder));
+  return gulp.src([cssFiles, "!.src/main.css"]).pipe(dest(distFolder));
 });
 
 gulp.task("clean", async function () {
   const { deleteAsync } = await import("del");
 
-  return await deleteAsync(["dist/**/*", "!dist/styles.css"], { force: true });
+  return await deleteAsync(["dist/**/*", "!dist/main.css"], { force: true });
 });
 
 gulp.task("watch", () => {
