@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 595px;
+  @apply mx-auto;
+  font-family: "Montserrat", sans-serif;
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(102 51 153 / var(--tw-bg-opacity));
+}
+.bg-purple-50 {
+  /* background-color: rgb(250 245 255); */
+  background: #482a870d;
+}
+.bg-purple-100 {
+  background-color: rgb(243 232 255);
+}
+
+.bg-pink-50 {
+  background-color: #fafafa;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-grey {
+  --tw-border-opacity: 1;
+  border-color: rgb(118 118 118 / var(--tw-border-opacity));
+}
+.border-gray-300 {
+  border-color: #f5f5f5;
+}
+
+.border-opacity-30 {
+  --tw-border-opacity: 0.3;
+}
+
+.border-opacity-5 {
+  --tw-border-opacity: 0.05;
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(102 51 153 / var(--tw-text-opacity));
+}
+
+.text-grey {
+  --tw-text-opacity: 1;
+  color: rgb(118 118 118 / var(--tw-text-opacity));
+}
+.text-green {
+  color: rgb(22 163 74);
+}
+.text-red {
+  color: #c11f1f;
+}
+
+.text-black-100 {
+  color: #222222;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.test:first-child {
+  color: red;
+}
+
+tfoot td {
+  height: 20px;
+}
+
+.report-footer {
+  position: fixed;
+  bottom: 4px;
+  height: 20px;
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
