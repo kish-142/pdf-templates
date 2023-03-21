@@ -2,10 +2,6 @@
 
 Generate PDF templates either from `html` or `pug` files using <strong>[Puppeteer](https://pptr.dev)</strong> NodeJS library and [TailwindCSS](https://tailwindcss.com) for utility classes.
 
-# PDF Templates
-
-Generate PDF templates either from `html` or `pug` files using <strong>[Puppeteer](https://pptr.dev)</strong> NodeJS library and [TailwindCSS](https://tailwindcss.com) for utility classes.
-
 ## Installation
 
 To use the PDF Template, you can clone and run the following command:
